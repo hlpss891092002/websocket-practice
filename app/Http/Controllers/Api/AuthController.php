@@ -34,16 +34,6 @@ class AuthController extends BaseController
     }
 
     /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function me()
-    {
-        return response()->json(Auth::user(), 200);
-    }
-
-    /**
      * Log the user out (Invalidate the token).
      *
      * @return \Illuminate\Http\JsonResponse
@@ -56,6 +46,16 @@ class AuthController extends BaseController
             [
                 'message' => 'Successfully logged out'
             ], 200);
+    }
+
+    /**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        return response()->json(Auth::user(), 200);
     }
 
     /**

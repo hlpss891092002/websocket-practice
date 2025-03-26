@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ResponseMiddleWare
+class ResponseMiddleware
 {
     /**
      * Handle an incoming request.

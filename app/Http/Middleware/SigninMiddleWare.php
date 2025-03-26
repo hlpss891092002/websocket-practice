@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class SigninMiddleWare
+class SigninMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class SigninMiddleWare
     public function handle(Request $request, Closure $next): Response
     {
         if(!Auth::user()){
-            return redirect()->route('signin');
+            return redirect()->route('loginPage');
         }
         return $next($request);
     }
