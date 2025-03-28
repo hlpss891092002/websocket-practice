@@ -28,9 +28,11 @@ class AuthController extends BaseController
         $credentials = request(['email', 'password']);
         $token = Auth::attempt($credentials);
         if (! $token ) {
-            return response(['error' => 'Unauthorized'], 401);
+            return response([
+                'status' => false,
+                'msg' => 'email or password is wrong'], 401);
         }
-        return response($this->respondWithToken($token), 201);
+        return $this->respondWithToken($token);
     }
 
     /**
@@ -44,7 +46,7 @@ class AuthController extends BaseController
 
         return response(
             [
-                'message' => 'Successfully logged out'
+                'msg' => 'Successfully logged out'
             ], 200);
     }
 
@@ -81,6 +83,6 @@ class AuthController extends BaseController
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
-        ]);
+        ], 201);
     }
 }

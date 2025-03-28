@@ -4,7 +4,7 @@ namespace App\Broadcasting;
 
 use App\Models\User;
 
-class BulletinBoardChannel
+class UserPrivatechannel
 {
     /**
      * Create a new channel instance.
@@ -20,6 +20,5 @@ class BulletinBoardChannel
     public function join(User $user): array|bool
     {
         //
-        return $user->id === 1;
     }
 }

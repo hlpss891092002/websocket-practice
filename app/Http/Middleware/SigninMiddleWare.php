@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\Response;
 
 class SigninMiddleware
@@ -17,7 +18,9 @@ class SigninMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if(!Auth::user()){
-            return redirect()->route('loginPage');
+            return  response()->json([
+                'status' => false,
+                'msg' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
         }
         return $next($request);
     }

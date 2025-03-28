@@ -13,7 +13,7 @@ use Illuminate\contracts\Events\ShouldDispatchAfterCommit;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageSent implements ShouldBroadcast
+class MessageSent implements ShouldBroadcast, ShouldDispatchAfterCommit
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -52,7 +52,7 @@ class MessageSent implements ShouldBroadcast
             'id' => $this->message->id,
             'content' => $this->message->content,
             'sender_id' => $this->message->sender_id,
-            'name' => '$this->message->name'
+            'senderName' => $this->message->sender->name
         ];
     }
 }
